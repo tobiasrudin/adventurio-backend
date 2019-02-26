@@ -8,7 +8,7 @@ env:
     - AWS_DEFAULT_REGION=eu-central-1
 
 install:
-  - pip install awscli --upgrade --user
+  - pip install awscli --upgrade
   - pip install -r requirements.txt
 
 script:
