@@ -1,0 +1,28 @@
+Type: AWS::Cognito::UserPool
+
+Parameters:
+  Env:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - test
+      - prod
+    Description: Enter dev, test or prod.
+
+Properties:
+  AdminCreateUserConfig:
+    AllowAdminCreateUserOnly: False
+    UnusedAccountValidityDays: 7
+  Policies:
+    PasswordPolicy:
+      MinimumLength: 10
+      RequireLowercase: False
+      RequireNumbers: False
+      RequireSymbols: False
+      RequireUppercase: False
+  UsernameAttributes:
+    - email
+  UserPoolName: adventurio-${Env}
+  UserPoolTags:
+    String: adventurio-user-pool
