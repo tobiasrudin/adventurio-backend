@@ -12,6 +12,7 @@ install:
   - pip install -r requirements.txt
 
 script:
+  - yamllint ./cloudformation/cognito-user-pool.yml
   - aws cloudformation validate-template --template-body file://cloudformation/cognito-user-pool.yml
 
 after_success:
