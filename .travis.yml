@@ -1,20 +1,15 @@
 language: python
-
 python:
   - "3.6"
-
 env:
   global:
     - AWS_DEFAULT_REGION=eu-central-1
-
 install:
   - pip install awscli --upgrade
   - pip install -r requirements.txt
-
 script:
   - yamllint ./cloudformation/cognito-user-pool.yml
   - aws cloudformation validate-template --template-body file://cloudformation/cognito-user-pool.yml
-
 after_success:
   - echo "Test Success - Branch($TRAVIS_BRANCH) Pull Request($TRAVIS_PULL_REQUEST) Tag($TRAVIS_TAG)"
   - echo "Cloudformation template validated"

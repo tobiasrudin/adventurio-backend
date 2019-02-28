@@ -1,4 +1,3 @@
----
 Parameters:
   Env:
     Type: String
@@ -8,7 +7,6 @@ Parameters:
       - test
       - prod
     Description: Enter dev, test or prod.
-
 Resources:
   AdventurioUserPool:
     Type: AWS::Cognito::UserPool
@@ -28,5 +26,3 @@ Resources:
       UserPoolName: adventurio-${Env}
       UserPoolTags:
         String: adventurio-user-pool
----
-
