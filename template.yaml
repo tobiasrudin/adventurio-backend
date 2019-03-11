@@ -12,10 +12,12 @@ Resources:
   AdventurioApiGateway:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: Prod
-      DefinitionUri: ./specs/openapi.yaml
-      Variables:
-        Stage: !Ref Stage
+      StageName: !Sub ${Stage}
+      DefinitionBody:
+        "Fn::Transform":
+          Name: "AWS::Include"
+          Parameters:
+            Location: s3://aws-sam-templates-eu-north-1/openapi-template/openapi.yaml
   GetGamesFunction:
     Type: AWS::Serverless::Function
     Properties:

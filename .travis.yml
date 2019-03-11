@@ -11,7 +11,8 @@ install:
   - pip install -r requirements.txt
 script:
   - ./travis/lint-validate.sh
-  - . ./travis/set-deploy-variable.sh
+  - . ./travis/set-deploy-variable.shaws
+  - aws s3 cp ./specs/openapi.yaml s3://aws-sam-templates-eu-north-1/openapi-template/openapi.yaml
   - aws cloudformation package --template-file ./template.yaml --s3-bucket aws-sam-templates-eu-north-1 --output-template-file packaged-template.yaml
   - aws cloudformation deploy --template-file packaged-template.yaml --stack-name $STACKNAME --capabilities CAPABILITY_IAM
 
