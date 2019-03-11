@@ -10,14 +10,9 @@ env:
 install:
   - pip install -r requirements.txt
 script:
-  - "./travis/lint-validate.sh"
+  - ./travis/lint-validate.sh
+  - . ./travis/set-deploy-variable.sh
   - aws cloudformation package --template-file ./template.yaml --s3-bucket aws-sam-templates-eu-north-1 --output-template-file packaged-template.yaml
-jobs:
-  include:
-    - stage: deploy-dev
-      script: aws cloudformation deploy --template-file packaged-template.yaml --stack-name dev --capabilities CAPABILITY_IAM
-stages:
-  - name: deploy-dev
-    if: branch = dev
+  - aws cloudformation deploy --template-file packaged-template.yaml --stack-name $STAGE --capabilities CAPABILITY_IAM
 after_success:
   - echo "Success!"
