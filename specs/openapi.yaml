@@ -1,9 +1,9 @@
 ---
 openapi: 3.0.2
 info:
-  version: "1.0"
+  version: "0.9"
   title: "Adventürio"
-  description: "Get or post info about Adventürio games"
+  description: "Get or post info about Adventürio games."
   contact:
     name: "Tobias Rudin"
     email: "t.rudin@gmail.com"
