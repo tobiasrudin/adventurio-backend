@@ -31,13 +31,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Games"
-          x-amazon-apigateway-request-validators:
-            basic:
-              validateRequestParameters: true
-          x-amazon-apigateway-integration:
-            type: "aws"
-            httpMethod: "GET"
-            uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:GetGamesFunction/invocations"
+      x-amazon-apigateway-request-validators:
+        basic:
+          validateRequestParameters: true
+      x-amazon-apigateway-integration:
+        type: "aws"
+        httpMethod: "GET"
+        uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:GetGamesFunction/invocations"
     post:
       summary: Create a game
       operationId: createGames
@@ -56,13 +56,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-          x-amazon-apigateway-request-validators:
-            basic:
-              validateRequestParameters: true
-          x-amazon-apigateway-integration:
-            type: "aws"
-            httpMethod: "POST"
-            uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:PostGamesFunction/invocations"
+      x-amazon-apigateway-request-validators:
+        basic:
+          validateRequestParameters: true
+      x-amazon-apigateway-integration:
+        type: "aws"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:PostGamesFunction/invocations"
 
   /games/{gameId}:
     get:
@@ -88,13 +88,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-          x-amazon-apigateway-request-validators:
-            basic:
-              validateRequestParameters: true
-          x-amazon-apigateway-integration:
-            type: "aws"
-            httpMethod: "GET"
-            uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:GetGameFunction/invocations"
+      x-amazon-apigateway-request-validators:
+        basic:
+          validateRequestParameters: true
+      x-amazon-apigateway-integration:
+        type: "aws"
+        httpMethod: "GET"
+        uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:GetGameFunction/invocations"
 
 components:
   schemas:
