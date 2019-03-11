@@ -9,17 +9,14 @@ env:
     - AWS_DEFAULT_REGION=eu-north-1
 install:
   - pip install -r requirements.txt
+script:
+  - "./travis/lint-validate.sh"
+  - aws cloudformation package --template-file ./template.yaml --s3-bucket aws-sam-templates-eu-north-1 --output-template-file packaged-template.yaml
 jobs:
   include:
-    - stage: test
-      script: "./travis/lint-validate.sh"
-    - stage: deploy
-      script: aws cloudformation package --template-file ./template.yaml --s3-bucket aws-sam-templates-eu-north-1 --output-template-file packaged-template.yaml
     - stage: deploy-dev
       script: aws cloudformation deploy --template-file packaged-template.yaml --stack-name dev --capabilities CAPABILITY_IAM
 stages:
-  - name: test
-  - name: deploy
   - name: deploy-dev
     if: branch = dev
 after_success:
