@@ -1,7 +1,7 @@
 ---
 Transform: "AWS::Serverless-2016-10-31"
 Parameters:
-  StageParameter:
+  Stage:
     Type: String
     Default: dev
     AllowedValues:
@@ -14,10 +14,12 @@ Resources:
     Properties:
       StageName: Prod
       DefinitionUri: ./specs/openapi.yaml
+      Variables:
+        Stage: !Ref Stage
   GetGamesFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub "get-games-function-${StageParameter}"
+      FunctionName: !Sub "get-games-function-${Stage}"
       Runtime: python3.7
       Handler: index.handler
       CodeUri: ./lambda/get-games/
@@ -31,7 +33,7 @@ Resources:
   PostGamesFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub "post-games-function-${StageParameter}"
+      FunctionName: !Sub "post-games-function-${Stage}"
       Runtime: python3.7
       Handler: index.handler
       CodeUri: ./lambda/post-games/
@@ -45,7 +47,7 @@ Resources:
   GetGameFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub "get-game-function-${StageParameter}"
+      FunctionName: !Sub "get-game-function-${Stage}"
       Runtime: python3.7
       Handler: index.handler
       CodeUri: ./lambda/get-game/
