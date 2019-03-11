@@ -1,0 +1,50 @@
+---
+Transform: "AWS::Serverless-2016-10-31"
+Resources:
+  AdventurioApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      DefinitionUri: ./specs/openapi.yaml
+  GetGamesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: GetGamesFunction
+      Runtime: python3.7
+      Handler: index.handler
+      CodeUri: ./lambda/get-games/
+      Events:
+        PostPetApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref AdventurioApiGateway
+            Path: /games
+            Method: GET
+  PostGamesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: PostGamesFunction
+      Runtime: python3.7
+      Handler: index.handler
+      CodeUri: ./lambda/post-games/
+      Events:
+        PostPetApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref AdventurioApiGateway
+            Path: /games
+            Method: POST
+  GetGameFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: GetGameFunction
+      Runtime: python3.7
+      Handler: index.handler
+      CodeUri: ./lambda/get-game/
+      Events:
+        PostPetApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref AdventurioApiGateway
+            Path: /games/{gameId}
+            Method: GET

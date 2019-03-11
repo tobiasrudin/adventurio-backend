@@ -1,0 +1,165 @@
+---
+openapi: 3.0.2
+info:
+  version: "1.0"
+  title: "Adventürio"
+  description: "Get or post info about Adventürio games"
+  contact:
+    name: "Tobias Rudin"
+    email: "t.rudin@gmail.com"
+paths:
+  /games:
+    get:
+      summary: List all games
+      operationId: listGames
+      parameters:
+        - name: search
+          in: query
+          description: Search string to filter results
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A paged array of games
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Games"
+          x-amazon-apigateway-request-validators:
+            basic:
+              validateRequestParameters: true
+          x-amazon-apigateway-integration:
+            type: "aws"
+            httpMethod: "GET"
+            uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:GetGamesFunction/invocations"
+    post:
+      summary: Create a game
+      operationId: createGames
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Game"
+      responses:
+        "201":
+          description: Null response
+        "500":
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          x-amazon-apigateway-request-validators:
+            basic:
+              validateRequestParameters: true
+          x-amazon-apigateway-integration:
+            type: "aws"
+            httpMethod: "POST"
+            uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:PostGamesFunction/invocations"
+
+  /games/{gameId}:
+    get:
+      summary: Information about an Adventürio game
+      operationId: showGameById
+      parameters:
+        - name: gameId
+          in: path
+          required: true
+          description: The id of the game to retrieve
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"
+        "404":
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          x-amazon-apigateway-request-validators:
+            basic:
+              validateRequestParameters: true
+          x-amazon-apigateway-integration:
+            type: "aws"
+            httpMethod: "GET"
+            uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:GetGameFunction/invocations"
+
+components:
+  schemas:
+    Game:
+      required:
+        - id
+        - name
+        - points
+        - startPosition
+        - author
+      properties:
+        id:
+          type: string
+          minLength: 36
+          maxLength: 36
+        name:
+          type: string
+        points:
+          type: array
+          items:
+            $ref: "#/components/schemas/Point"
+        startPos:
+          properties:
+            long:
+              type: number
+            lat:
+              type: number
+    Games:
+      type: array
+      items:
+        $ref: "#/components/schemas/Game"
+    Point:
+      properties:
+        long:
+          type: number
+        lat:
+          type: number
+        question:
+          type: string
+          maxLength: 100
+        timeUntilAnswer:
+          type: integer
+          format: int32
+        hints:
+          type: array
+          items:
+            $ref: "#/components/schemas/Hint"
+        answer:
+          type: string
+          maxLength: 20
+    Hint:
+      properties:
+        timeUntilShown:
+          type: integer
+          format: int32
+        text:
+          type: string
+          maxLength: 100
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

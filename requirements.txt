@@ -1,1 +1,3 @@
 yamllint
+awscli
+aws-sam-cli
