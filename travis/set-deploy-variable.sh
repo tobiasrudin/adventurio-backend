@@ -1,4 +1,4 @@
 #! /bin/bash
 if [[ $TRAVIS_BRANCH == 'dev' ]]; then
-	setenv STAGE dev
+	export STAGE=dev
 fi
