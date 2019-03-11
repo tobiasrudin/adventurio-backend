@@ -2,7 +2,7 @@
 openapi: 3.0.2
 info:
   version: "0.9"
-  title: "Adventürio"
+  title: adventurio-${stageVariables.StageParameter}
   description: "Get or post info about Adventürio games."
   contact:
     name: "Tobias Rudin"
