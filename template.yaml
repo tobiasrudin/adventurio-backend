@@ -14,8 +14,8 @@ Resources:
     Properties:
       StageName: !Sub ${Stage}
       DefinitionBody:
-        "Fn::Transform":
-          Name: "AWS::Include"
+        Fn::Transform:
+          Name: AWS::Include
           Parameters:
             Location: ./specs/openapi.yaml
   GetGamesFunction:
