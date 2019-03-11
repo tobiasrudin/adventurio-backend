@@ -37,7 +37,7 @@ paths:
       x-amazon-apigateway-integration:
         type: "aws"
         httpMethod: "GET"
-        uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:GetGamesFunction/invocations"
+        uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${GetGamesFunction.Arn}/invocations"
     post:
       summary: Create a game
       operationId: createGames
@@ -62,7 +62,7 @@ paths:
       x-amazon-apigateway-integration:
         type: "aws"
         httpMethod: "POST"
-        uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:PostGamesFunction/invocations"
+        uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${PostGamesFunction.Arn}/invocations"
 
   /games/{gameId}:
     get:
@@ -94,7 +94,7 @@ paths:
       x-amazon-apigateway-integration:
         type: "aws"
         httpMethod: "GET"
-        uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:GetGameFunction/invocations"
+        uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${GetGameFunction.Arn}/invocations"
 
 components:
   schemas:
