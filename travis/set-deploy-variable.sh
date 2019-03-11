@@ -1,4 +1,4 @@
 #! /bin/bash
 if [[ $TRAVIS_BRANCH == 'dev' ]]; then
-	export STAGE=dev
+	export STACKNAME=adventurio-dev
 fi

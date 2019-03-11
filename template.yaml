@@ -1,5 +1,13 @@
 ---
 Transform: "AWS::Serverless-2016-10-31"
+Parameters:
+  StageParameter:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - prod
+    Description: Enter 'dev' or 'prod'. Default 'dev'.
 Resources:
   AdventurioApiGateway:
     Type: AWS::Serverless::Api
@@ -9,7 +17,7 @@ Resources:
   GetGamesFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: GetGamesFunction
+      FunctionName: !Sub "get-games-function-${StageParameter}"
       Runtime: python3.7
       Handler: index.handler
       CodeUri: ./lambda/get-games/
@@ -23,7 +31,7 @@ Resources:
   PostGamesFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: PostGamesFunction
+      FunctionName: !Sub "post-games-function-${StageParameter}"
       Runtime: python3.7
       Handler: index.handler
       CodeUri: ./lambda/post-games/
@@ -37,7 +45,7 @@ Resources:
   GetGameFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: GetGameFunction
+      FunctionName: !Sub "get-game-function-${StageParameter}"
       Runtime: python3.7
       Handler: index.handler
       CodeUri: ./lambda/get-game/
