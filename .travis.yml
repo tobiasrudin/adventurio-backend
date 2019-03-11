@@ -18,6 +18,8 @@ jobs:
     - stage: deploy-dev
       script: aws cloudformation deploy --template-file packaged-template.yaml --stack-name dev --capabilities CAPABILITY_IAM
 stages:
+  - name: test
+  - name: deploy
   - name: deploy-dev
     if: branch = dev
 after_success:
