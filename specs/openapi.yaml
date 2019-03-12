@@ -9,35 +9,6 @@ info:
     email: "t.rudin@gmail.com"
 paths:
   /games:
-    get:
-      summary: List all games
-      operationId: listGames
-      parameters:
-        - name: search
-          in: query
-          description: Search string to filter results
-          required: false
-          schema:
-            type: string
-      responses:
-        "200":
-          description: A paged array of games
-          headers:
-            x-next:
-              description: A link to the next page of responses
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Games"
-      x-amazon-apigateway-request-validators:
-        basic:
-          validateRequestParameters: true
-      x-amazon-apigateway-integration:
-        type: "aws_proxy"
-        httpMethod: "POST"
-        uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:${stageVariables.GetGamesFunction}/invocations"
     post:
       summary: Create a game
       operationId: createGames
@@ -120,10 +91,6 @@ components:
               type: number
             lat:
               type: number
-    Games:
-      type: array
-      items:
-        $ref: "#/components/schemas/Game"
     Point:
       properties:
         long:
