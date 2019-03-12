@@ -17,7 +17,7 @@ Resources:
         Fn::Transform:
           Name: AWS::Include
           Parameters:
-            Location: ./specs/openapi.yaml
+            Location: s3://aws-sam-templates-eu-north-1/openapi-template/openapi.yaml
   GetGamesFunction:
     Type: AWS::Serverless::Function
     Properties:
