@@ -4,7 +4,7 @@ import json
 
 def handler(event, context):
     print(event)
-    return post_games(event['body'])
+    return post_games(json.loads(event['body']))
 
 
 def post_games(game):
