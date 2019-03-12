@@ -10,6 +10,7 @@ env:
     - AWS_DEFAULT_REGION=eu-north-1
 install:
   - pip install -r requirements.txt
+  - pip install awscli aws-sam-cli --upgrade
 script:
   - ./travis/lint-validate.sh
   - . ./travis/set-deploy-variable.sh
