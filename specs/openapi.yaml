@@ -37,13 +37,7 @@ paths:
       x-amazon-apigateway-integration:
         type: "aws"
         httpMethod: "GET"
-        uri: 
-          Fn::Sub: |
-            arn:aws:apigateway:
-            ${AWS::Region}
-            :lambda:path/2015-03-31/functions/
-            ${GetGamesFunction.Arn}
-            /invocations
+        uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:454263499388:function:${stageVariables.GetGamesFunction}/invocations"
     post:
       summary: Create a game
       operationId: createGames
@@ -68,13 +62,7 @@ paths:
       x-amazon-apigateway-integration:
         type: "aws"
         httpMethod: "POST"
-        uri:
-          Fn::Sub:  |
-            arn:aws:apigateway:
-            ${AWS::Region}
-            :lambda:path/2015-03-31/functions/
-            ${PostGamesFunction.Arn}
-            /invocations
+        uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:454263499388:function:${PostGamesFunction.Arn}/invocations"
   /games/{gameId}:
     get:
       summary: Information about an Adventürio game
@@ -105,13 +93,7 @@ paths:
       x-amazon-apigateway-integration:
         type: "aws"
         httpMethod: "GET"
-        uri:
-          Fn::Sub:  |
-            arn:aws:apigateway:
-            ${AWS::Region}
-            :lambda:path/2015-03-31/functions/
-            ${GetGameFunction.Arn}
-            /invocations
+        uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:454263499388:function:${GetGameFunction.Arn}/invocations"
 components:
   schemas:
     Game:
