@@ -12,7 +12,7 @@ Resources:
   AdventurioApiGateway:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: !Sub ${Stage}
+      StageName: Prod
       DefinitionBody:
         Fn::Transform:
           Name: AWS::Include
