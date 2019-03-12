@@ -38,12 +38,12 @@ paths:
         type: "aws"
         httpMethod: "GET"
         uri: 
-          Fn::Sub:  |
+          Fn::Sub: |
             arn:aws:apigateway:
             ${AWS::Region}
             :lambda:path/2015-03-31/functions/
             ${GetGamesFunction.Arn}
-            /invocations"
+            /invocations
     post:
       summary: Create a game
       operationId: createGames
@@ -74,7 +74,7 @@ paths:
             ${AWS::Region}
             :lambda:path/2015-03-31/functions/
             ${PostGamesFunction.Arn}
-            /invocations"
+            /invocations
   /games/{gameId}:
     get:
       summary: Information about an Adventürio game
