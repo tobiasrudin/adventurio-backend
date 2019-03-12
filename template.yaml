@@ -15,23 +15,8 @@ Resources:
       StageName: !Sub ${Stage}
       DefinitionUri: ./specs/openapi.yaml
       Variables:
-        GetGamesFunction: !Ref GetGamesFunction
         PostGamesFunction: !Ref PostGamesFunction
         GetGameFunction: !Ref GetGameFunction
-  GetGamesFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub "get-games-function-${Stage}"
-      Runtime: python3.7
-      Handler: index.handler
-      CodeUri: ./lambda/get-games/
-      Events:
-        PostPetApi:
-          Type: Api
-          Properties:
-            RestApiId: !Ref AdventurioApiGateway
-            Path: /games
-            Method: GET
   PostGamesFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -46,6 +31,9 @@ Resources:
             RestApiId: !Ref AdventurioApiGateway
             Path: /games
             Method: POST
+      Environment:
+        Variables:
+          DYNAMODB-TABLE: !Ref GamesTable.TableName
   GetGameFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -60,3 +48,13 @@ Resources:
             RestApiId: !Ref AdventurioApiGateway
             Path: /games/{gameId}
             Method: GET
+      Environment:
+        Variables:
+          DYNAMODB-TABLE: !Ref GamesTable.TableName
+  GamesTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: !Sub "games-table-${Stage}"
+      PrimaryKey:
+        Name: id
+        Type: String
