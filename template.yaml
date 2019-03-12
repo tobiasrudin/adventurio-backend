@@ -8,6 +8,11 @@ Parameters:
       - dev
       - prod
     Description: Enter 'dev' or 'prod'. Default 'dev'.
+Globals:
+  Function:
+    Environment:
+      Variables:
+        GAMES_TABLE: !Ref GamesTable
 Resources:
   AdventurioApiGateway:
     Type: AWS::Serverless::Api
@@ -31,9 +36,6 @@ Resources:
             RestApiId: !Ref AdventurioApiGateway
             Path: /games
             Method: POST
-      Environment:
-        Variables:
-          DYNAMODB-TABLE: !Ref GamesTable.TableName
   GetGameFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -48,9 +50,6 @@ Resources:
             RestApiId: !Ref AdventurioApiGateway
             Path: /games/{gameId}
             Method: GET
-      Environment:
-        Variables:
-          GAMES_TABLE: !Ref GamesTable
   GamesTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
