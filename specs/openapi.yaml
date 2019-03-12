@@ -35,10 +35,9 @@ paths:
         basic:
           validateRequestParameters: true
       x-amazon-apigateway-integration:
-        type: "aws"
+        type: "aws_proxy"
         httpMethod: "GET"
-        uri: 
-          Fn::Sub: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:${stageVariables.GetGamesFunction}/invocations"
+        uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:${stageVariables.GetGamesFunction}/invocations"
     post:
       summary: Create a game
       operationId: createGames
@@ -61,7 +60,7 @@ paths:
         basic:
           validateRequestParameters: true
       x-amazon-apigateway-integration:
-        type: "aws"
+        type: "aws_proxy"
         httpMethod: "POST"
         uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:${stageVariables.PostGamesFunction}/invocations"
   /games/{gameId}:
@@ -92,7 +91,7 @@ paths:
         basic:
           validateRequestParameters: true
       x-amazon-apigateway-integration:
-        type: "aws"
+        type: "aws_proxy"
         httpMethod: "GET"
         uri: "arn:aws:apigateway:eu-north-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-north-1:454263499388:function:${stageVariables.GetGameFunction}/invocations"
 components:
