@@ -50,7 +50,7 @@ Resources:
             Method: GET
       Environment:
         Variables:
-          DYNAMODB-TABLE: !Ref GamesTable.TableName
+          GAMES_TABLE: !Ref GamesTable
   GamesTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
