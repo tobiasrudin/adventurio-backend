@@ -72,8 +72,7 @@ components:
         - id
         - name
         - points
-        - startPosition
-        - author
+        - startPos
       properties:
         id:
           type: string
