@@ -77,7 +77,7 @@ components:
       required:
         - id
         - name
-        - points
+        - paths
         - startPos
       properties:
         id:
@@ -86,16 +86,20 @@ components:
           maxLength: 36
         name:
           type: string
-        points:
+        paths:
           type: array
           items:
-            $ref: "#/components/schemas/Point"
+            $ref: "#/components/schemas/Path"
         startPos:
           properties:
             long:
               type: number
             lat:
               type: number
+    Path:
+      type: array
+      items:
+        $ref: "#/components/schemas/Point"
     Point:
       properties:
         long:
