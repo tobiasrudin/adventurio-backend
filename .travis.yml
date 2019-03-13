@@ -11,11 +11,17 @@ env:
 install:
   - pip install -r requirements.txt
   - pip install awscli aws-sam-cli --upgrade
+before_script:
+  - sam local start-api &
+  - sleep 2
 script:
   - ./travis/lint-validate.sh
   - . ./travis/set-deploy-variable.sh
+  - py.test ./tests/tavern/test_minimal.tavern.yaml
   - aws cloudformation package --template-file ./template.yaml --s3-bucket aws-sam-templates-eu-north-1 --output-template-file packaged-template.yaml
-  - aws cloudformation deploy --template-file packaged-template.yaml --stack-name $STACKNAME --capabilities CAPABILITY_IAM
-
+deploy:
+  provider: script
+  script: aws cloudformation deploy --template-file packaged-template.yaml --stack-name $STACKNAME --capabilities CAPABILITY_IAM
+  skip_cleanup: true
 after_success:
   - echo "Success!"
