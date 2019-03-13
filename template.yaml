@@ -12,7 +12,7 @@ Globals:
   Function:
     Environment:
       Variables:
-        TEST_ENV:
+        TEST_ENV: false
         GAMES_TABLE: !Ref GamesTable
 Resources:
   AdventurioApiGateway:
