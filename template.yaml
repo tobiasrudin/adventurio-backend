@@ -20,12 +20,12 @@ Resources:
       StageName: !Sub ${Stage}
       DefinitionUri: ./specs/openapi.yaml
       Variables:
-        PostGamesFunction: !Ref PostGamesFunction
+        PutGameFunction: !Ref PutGameFunction
         GetGameFunction: !Ref GetGameFunction
-  PostGamesFunction:
+  PutGameFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub "post-games-function-${Stage}"
+      FunctionName: !Sub "put-game-function-${Stage}"
       Runtime: python3.7
       Handler: index.handler
       CodeUri: ./lambda/post-games/
@@ -35,7 +35,7 @@ Resources:
           Properties:
             RestApiId: !Ref AdventurioApiGateway
             Path: /games
-            Method: POST
+            Method: PUT
   GetGameFunction:
     Type: AWS::Serverless::Function
     Properties:

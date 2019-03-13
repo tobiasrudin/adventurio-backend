@@ -4,10 +4,10 @@ import json
 
 def handler(event, context):
     print(event)
-    return post_games(json.loads(event['body']))
+    return put_game(json.loads(event['body']))
 
 
-def post_games(game):
+def put_game(game):
     print(game)
     if not is_valid_uuid(game['id']):
         return {
