@@ -9,13 +9,15 @@ def handler(event, context):
 
 
 def put_game(game):
-    print(game)
+
     if not is_valid_uuid(game['id']):
         return {
             "statusCode": 400,
-            "body": json.dumps({"message": "Error: Incorrect UUID format"})
+            "body": json.dumps({"message": "Error: Invalid UUID format"})
         }
-    dynamodb.save_game(game)
+
+    dynamodb.put_game(game)
+
     return {
         'statusCode': 201
     }
