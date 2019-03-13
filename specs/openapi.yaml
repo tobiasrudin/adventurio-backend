@@ -19,6 +19,8 @@ paths:
           description: The id of the game to retrieve
           schema:
             type: string
+            minLength: 36
+            maxLength: 36
       requestBody:
         required: true
         content:
@@ -59,6 +61,8 @@ paths:
           description: The id of the game to retrieve
           schema:
             type: string
+            minLength: 36
+            maxLength: 36
       responses:
         "200":
           description: Expected response to a valid request
