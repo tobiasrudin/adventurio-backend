@@ -7,4 +7,5 @@ aws dynamodb create-table --table-name adventurio-games-test \
 	--key-schema AttributeName=id,KeyType=HASH \
 	--provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
 	--endpoint-url http://0.0.0.0:8000
-sam local start-api --docker-network sam-local &
+sam local start-api --env-vars ./tests/tavern/sam-local-env-vars.json \
+	--docker-network sam-local &
