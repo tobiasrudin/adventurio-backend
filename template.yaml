@@ -28,13 +28,13 @@ Resources:
       FunctionName: !Sub "put-game-function-${Stage}"
       Runtime: python3.7
       Handler: index.handler
-      CodeUri: ./lambda/post-games/
+      CodeUri: ./lambda/put-games/
       Events:
         PostPetApi:
           Type: Api
           Properties:
             RestApiId: !Ref AdventurioApiGateway
-            Path: /games
+            Path: /games/{gameId}
             Method: PUT
   GetGameFunction:
     Type: AWS::Serverless::Function
