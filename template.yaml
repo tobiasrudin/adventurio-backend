@@ -53,7 +53,7 @@ Resources:
   GamesTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
-      TableName: !Sub "games-table-${Stage}"
+      TableName: !Sub "adventurio-games-${Stage}"
       PrimaryKey:
         Name: id
         Type: String

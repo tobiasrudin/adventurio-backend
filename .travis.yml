@@ -8,15 +8,16 @@ services:
 env:
   global:
     - AWS_DEFAULT_REGION=eu-north-1
+    - TEST_ENV=true
 install:
   - pip install -r requirements.txt
   - pip install awscli aws-sam-cli --upgrade
 before_script:
-  - sam local start-api &
+  - ./travis/create-test-env.sh
   - sleep 4
 script:
   - ./travis/lint-validate.sh
-  - py.test ./tests/tavern/test_minimal.tavern.yaml
+  - py.test ./tests/tavern/test_adventurio.tavern.yaml
   - aws cloudformation package --template-file ./template.yaml --s3-bucket aws-sam-templates-eu-north-1 --output-template-file packaged-template.yaml
 deploy:
   - provider: script

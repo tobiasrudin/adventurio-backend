@@ -1,0 +1,32 @@
+---
+test_name: Test the Adventürio API
+stages:
+  - name: Get a game with a specific ID
+    request:
+      url: http://127.0.0.1:3000/games/f18aad84-a718-4370-9377-a0944f3c18e5
+      method: GET
+    response:
+      status_code: 200
+  - name: Put a game with a specific ID
+    request:
+      url: http://127.0.0.1:3000/games/f18aad84-a718-4370-9377-a0944f3c18e5
+      method: PUT
+      headers:
+        content-type: application/json
+      json:
+        id: f18aad84-a718-4370-9377-a0944f3c18e5
+        name: "A game"
+        paths:
+          - - long: "11.11"
+              lat: "12.12"
+              question: "What is Adventürio?"
+              answer: "A game"
+              timeUntilAnswer: "300"
+              hints:
+                - timeUntilShown: "60"
+                  text: "A g-me"
+        startPos:
+          long: "13.13"
+          lat: "14.14"
+    response:
+      status_code: 201

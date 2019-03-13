@@ -1,5 +1,6 @@
 from uuid import UUID
 import json
+import dynamodb
 
 
 def handler(event, context):
@@ -14,6 +15,7 @@ def put_game(game):
             "statusCode": 400,
             "body": json.dumps({"message": "Error: Incorrect UUID format"})
         }
+    dynamodb.save_game(game)
     return {
         'statusCode': 201
     }
