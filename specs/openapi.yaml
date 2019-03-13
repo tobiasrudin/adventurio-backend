@@ -11,12 +11,12 @@ paths:
   /games/{gameId}:
     put:
       summary: Create a game
-      operationId: createGames
+      operationId: createGame
       parameters:
         - name: gameId
           in: path
           required: true
-          description: The id of the game to retrieve
+          description: The id of the game to put
           schema:
             type: string
             minLength: 36
@@ -59,7 +59,7 @@ paths:
         - name: gameId
           in: path
           required: true
-          description: The id of the game to retrieve
+          description: The id of the game to get
           schema:
             type: string
             minLength: 36
@@ -94,15 +94,10 @@ components:
   schemas:
     Game:
       required:
-        - id
         - name
         - paths
         - startPos
       properties:
-        id:
-          type: string
-          minLength: 36
-          maxLength: 36
         name:
           type: string
         paths:
