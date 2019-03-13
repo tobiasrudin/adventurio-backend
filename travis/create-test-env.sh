@@ -1,6 +1,6 @@
 #!/bin/bash
 docker network create sam-local
-docker run -d -p 8000:8000 --network lambda-local \
+docker run -d -p 8000:8000 --network sam-local \
 	--name dynamodb cnadiminti/dynamodb-local
 aws dynamodb create-table --table-name adventurio-games-test \
 	--attribute-definitions AttributeName=id,AttributeType=S \
