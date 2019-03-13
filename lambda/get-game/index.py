@@ -9,8 +9,11 @@ def handler(event, context):
 
 def get_game(gameId):
 
-    if not is_valid_uuid(game['id']):
+    if not is_valid_uuid(gameId):
         return {
+            'headers': {
+                'Content-Type': 'application/json'
+            },
             "statusCode": 400,
             "body": json.dumps({"message": "Error: Invalid UUID format"})
         }
@@ -19,6 +22,9 @@ def get_game(gameId):
 
     if not game:
         return {
+            'headers': {
+                'Content-Type': 'application/json'
+            },
             'statusCode': 404,
             'body': json.dumps({'message': 'Requested game does not exist'})
         }

@@ -12,6 +12,9 @@ def put_game(game):
 
     if not is_valid_uuid(game['id']):
         return {
+            'headers': {
+                'Content-Type': 'application/json'
+            },
             "statusCode": 400,
             "body": json.dumps({"message": "Error: Invalid UUID format"})
         }

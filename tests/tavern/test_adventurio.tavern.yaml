@@ -1,13 +1,54 @@
 ---
 test_name: Test the Adventürio API
 stages:
-  - name: Get a game with a specific ID
+  - name: Request a game that doesn't exist
     request:
       url: http://127.0.0.1:3000/games/f18aad84-a718-4370-9377-a0944f3c18e5
       method: GET
     response:
       status_code: 404
-  - name: Put a game with a specific ID
+      headers:
+        content-type: "application/json"
+      body:
+        message: "Requested game does not exist"
+  - name: Request a game with an invalid UUID
+    request:
+      url: http://127.0.0.1:3000/games/invalid-uuid
+      method: GET
+    response:
+      status_code: 400
+      headers:
+        content-type: "application/json"
+      body:
+        message: "Error: Invalid UUID format"
+  - name: Put a game with an invalid UUID
+    request:
+      url: http://127.0.0.1:3000/games/invalid-uuid
+      method: PUT
+      headers:
+        content-type: application/json
+      json:
+        id: f18aad84-a718-4370-9377-a0944f3c18e5
+        name: "A game"
+        paths:
+          - - long: "11.11"
+              lat: "12.12"
+              question: "What is Adventürio?"
+              answer: "A game"
+              timeUntilAnswer: "300"
+              hints:
+                - timeUntilShown: "60"
+                  text: "A g-me"
+        startPos:
+          long: "13.13"
+          lat: "14.14"
+    response:
+      status_code: 400
+      headers:
+        content-type: "application/json"
+      body:
+        message: "Error: Invalid UUID format"
+  - name: Put a game with a valid UUID
     request:
       url: http://127.0.0.1:3000/games/f18aad84-a718-4370-9377-a0944f3c18e5
       method: PUT
@@ -30,12 +71,14 @@ stages:
           lat: "14.14"
     response:
       status_code: 201
-  - name: Get a game with a specific ID
+  - name: Request a game that does exist
     request:
       url: http://127.0.0.1:3000/games/f18aad84-a718-4370-9377-a0944f3c18e5
       method: GET
     response:
       status_code: 200
+      headers:
+        content-type: "application/json"
       body:
         id: f18aad84-a718-4370-9377-a0944f3c18e5
         name: "A game"
@@ -51,5 +94,3 @@ stages:
         startPos:
           long: "13.13"
           lat: "14.14"
-      headers:
-        content-type: "application/json"
