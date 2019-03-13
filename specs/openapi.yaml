@@ -46,6 +46,7 @@ paths:
                 $ref: "#/components/schemas/Error"
       x-amazon-apigateway-request-validators:
         basic:
+          validateRequestBody: true
           validateRequestParameters: true
       x-amazon-apigateway-integration:
         type: "aws_proxy"
