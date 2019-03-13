@@ -30,6 +30,9 @@ Resources:
       Runtime: python3.7
       Handler: index.handler
       CodeUri: ./lambda/put-game/
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref GamesTable
       Events:
         PostPetApi:
           Type: Api
@@ -44,6 +47,9 @@ Resources:
       Runtime: python3.7
       Handler: index.handler
       CodeUri: ./lambda/get-game/
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref GamesTable
       Events:
         PostPetApi:
           Type: Api
