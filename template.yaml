@@ -28,7 +28,7 @@ Resources:
       FunctionName: !Sub "put-game-function-${Stage}"
       Runtime: python3.7
       Handler: index.handler
-      CodeUri: ./lambda/put-games/
+      CodeUri: ./lambda/put-game/
       Events:
         PostPetApi:
           Type: Api
