@@ -105,9 +105,9 @@ components:
         startPos:
           properties:
             long:
-              type: number
+              type: string
             lat:
-              type: number
+              type: string
     Path:
       type: array
       items:
@@ -115,15 +115,14 @@ components:
     Point:
       properties:
         long:
-          type: number
+          type: string
         lat:
-          type: number
+          type: string
         question:
           type: string
           maxLength: 100
         timeUntilAnswer:
-          type: integer
-          format: int32
+          type: string
         hints:
           type: array
           items:
@@ -134,8 +133,7 @@ components:
     Hint:
       properties:
         timeUntilShown:
-          type: integer
-          format: int32
+          type: string
         text:
           type: string
           maxLength: 100
