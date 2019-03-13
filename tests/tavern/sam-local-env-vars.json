@@ -1,3 +1,8 @@
 {
-  "TEST_ENV": "true"
+  "PutGameFunction": {
+    "TEST_ENV": "true"
+  },
+  "GetGameFunction": {
+    "TEST_ENV": "true"
+  }
 }
