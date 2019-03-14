@@ -1,4 +1,3 @@
-from uuid import UUID
 import json
 import dynamodb
 import coordinates
