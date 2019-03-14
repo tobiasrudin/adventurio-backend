@@ -1,4 +1,4 @@
-import simplejson as json
+import json
 import dynamodb
 import coordinates
 import uuid_checker
@@ -38,5 +38,12 @@ def get_game(gameId):
             'Content-Type': 'application/json'
         },
         'statusCode': 200,
-        'body': json.dumps(game)
+        'body': json.dumps(game, cls=DecimalEncoder)
     }
+
+
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, decimal.Decimal):
+            return float(o)
+        return super(DecimalEncoder, self).default(o)
