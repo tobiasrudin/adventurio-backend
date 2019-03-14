@@ -30,17 +30,17 @@ stages:
       json:
         name: "A game"
         paths:
-          - - long: "11.11"
-              lat: "12.12"
+          - - long: 11.11
+              lat: 12.12
               question: "What is Adventürio?"
               answer: "A game"
-              timeUntilAnswer: "300"
+              timeUntilAnswer: 300
               hints:
-                - timeUntilShown: "60"
+                - timeUntilShown: 60
                   text: "A g-me"
         startPos:
-          long: "13.13"
-          lat: "14.14"
+          long: 13.13
+          lat: 14.14
     response:
       status_code: 400
       headers:
@@ -56,17 +56,17 @@ stages:
       json:
         name: "A game"
         paths:
-          - - long: "11.11"
-              lat: "12.12"
+          - - long: 11.11
+              lat: 12.12
               question: "What is Adventürio?"
               answer: "A game"
-              timeUntilAnswer: "300"
+              timeUntilAnswer: 300
               hints:
-                - timeUntilShown: "60"
+                - timeUntilShown: 60
                   text: "A g-me"
         startPos:
-          long: "13.13"
-          lat: "14.14"
+          long: 13.13
+          lat: 14.14
     response:
       status_code: 201
   - name: Request a game that does exist
@@ -80,14 +80,14 @@ stages:
       body:
         name: "A game"
         paths:
-          - - long: "11.11"
-              lat: "12.12"
+          - - long: 11.11
+              lat: 12.12
               question: "What is Adventürio?"
               answer: "A game"
-              timeUntilAnswer: "300"
+              timeUntilAnswer: 300
               hints:
-                - timeUntilShown: "60"
+                - timeUntilShown: 60
                   text: "A g-me"
         startPos:
-          long: "13.13"
-          lat: "14.14"
+          long: 13.13
+          lat: 14.14
