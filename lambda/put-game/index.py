@@ -5,12 +5,12 @@ import dynamodb
 
 def handler(event, context):
     print(event)
-    return put_game(json.loads(event['body']))
+    return put_game(json.loads(event['body']), event['pathParameters']['gameId'])
 
 
-def put_game(game):
+def put_game(game, gameId):
 
-    if not is_valid_uuid(game['id']):
+    if not is_valid_uuid(gameId):
         return {
             'headers': {
                 'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ def put_game(game):
             "body": json.dumps({"message": "Error: Invalid UUID format"})
         }
 
-    dynamodb.put_game(game)
+    dynamodb.put_game(game, gameId)
 
     return {
         'statusCode': 201

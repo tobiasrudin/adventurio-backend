@@ -28,7 +28,6 @@ stages:
       headers:
         content-type: application/json
       json:
-        id: f18aad84-a718-4370-9377-a0944f3c18e5
         name: "A game"
         paths:
           - - long: "11.11"
@@ -55,7 +54,6 @@ stages:
       headers:
         content-type: application/json
       json:
-        id: f18aad84-a718-4370-9377-a0944f3c18e5
         name: "A game"
         paths:
           - - long: "11.11"
@@ -80,7 +78,6 @@ stages:
       headers:
         content-type: "application/json"
       body:
-        id: f18aad84-a718-4370-9377-a0944f3c18e5
         name: "A game"
         paths:
           - - long: "11.11"
