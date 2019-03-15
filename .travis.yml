@@ -26,7 +26,7 @@ deploy:
     on:
       branch: dev
   - provider: script
-    script: aws cloudformation deploy --template-file packaged-template.yaml --stack-name adventurio-prod --capabilities CAPABILITY_IAM
+    script: aws cloudformation deploy --template-file packaged-template.yaml --parameters ParameterKey=Stage,ParameterValue=prod --stack-name adventurio-prod --capabilities CAPABILITY_IAM
     skip_cleanup: true
     on:
       branch: master
