@@ -14,7 +14,7 @@ install:
   - pip install awscli aws-sam-cli --upgrade
 before_script:
   - ./travis/create-test-env.sh
-  - sleep 4
+  - sleep 5
 script:
   - ./travis/lint-validate.sh
   - py.test ./tests/tavern/test_adventurio.tavern.yaml
