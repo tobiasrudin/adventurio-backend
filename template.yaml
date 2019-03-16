@@ -30,6 +30,8 @@ Resources:
       Runtime: python3.7
       Handler: index.handler
       CodeUri: ./lambda/put-game/
+      Layers:
+        - AdventurioGamesCommonFiles
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref GamesTable
@@ -47,6 +49,8 @@ Resources:
       Runtime: python3.7
       Handler: index.handler
       CodeUri: ./lambda/get-game/
+      Layers:
+        - AdventurioGamesCommonFiles
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref GamesTable
@@ -57,6 +61,15 @@ Resources:
             RestApiId: !Ref AdventurioApiGateway
             Path: /games/{gameId}
             Method: GET
+  AdventurioGamesCommonFiles:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: adventurio-app-common-files
+      Description: Common files for adventurio app
+      ContentUri: ./lambda/common/
+      CompatibleRuntimes:
+        - python3.7
+      RetentionPolicy: Retain
   GamesTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
